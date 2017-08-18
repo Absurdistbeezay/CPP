@@ -77,26 +77,45 @@ class Time {
 private:
 	int hour;
 	int minutes;
+	
 
 public:
+	int setHour();
 	Time(int, int);
-	/*int setHour();
-	int setMinute();*/
 	void display();
 };
+
+int Time::setHour() {
+
+	return hour;
+}
+//
+//int Time::setDuration(int _duration) {
+//	duration = _duration;
+//
+//	int totalMinute = duration + minutes;
+//
+//	if (totalMinute < 60) {
+//
+//		minutes = totalMinute;
+//		return minutes;
+//	}
+//	else {
+//		hour = hour + 1;
+//		minutes = totalMinute - 60;
+//
+//		return minutes;
+//	}
+//
+//}
+
 Time::Time(int _hour, int _minutes) {
 	hour = _hour;
 	minutes = _minutes;
-	
-}
-//int Time::setHour() {
-//	return hour;
-//}
-//int Time::setMinute() {
-//	return minutes;
-//}
-void Time::display() {
 
+}
+
+void Time::display() {
 	
 	cout << "Start Time(24hr format): " << hour << ":" << minutes << endl;
 	}
@@ -110,31 +129,31 @@ private:
 	Person patientData;
 	Date aptDate;
 	Time aptTime;
-	int duration;
-
+	int endHour;
+	int endMinute;
 
 public:
-	
 	
 	DentalAppointment(string, string, string, int, int, int, int, int, int);
 	void display();
 };
-//int DentalAppointment::setDuration() {
-//	duration = 30;
-//	return duration;
-//}
+
 DentalAppointment::DentalAppointment(string patientName, string patientLname, string zipCode, int month, int day, int year, int hour, int minute, int duration) 
 	: patientData( patientName, patientLname, zipCode),aptDate(month, day, year), aptTime(hour, minute){
-	
-	int totalMinute = duration + minute;
+
+
+	//endHour = hour;
+	//endMinute = minute + duration;
+
+	int totalMinute = minute + duration;
 
 	if (totalMinute < 60) {
-
-		minute = totalMinute;
+		endMinute = totalMinute;
+		endHour = hour;
 	}
 	else {
-		hour = hour + 1;
-		minute = totalMinute - 60;
+		endHour = hour + 1;
+		endMinute = totalMinute - 60;
 	}
 
 }
@@ -144,9 +163,12 @@ void DentalAppointment::display(){
 	patientData.display();
 	aptDate.display();
 	aptTime.display();
+	cout << "End Time: " << endHour << ":"<< endMinute <<endl;
+
+	/*timeDuration(30);*/
+
 	/*cout << "End Time: " << endl;*/
 }
-
 
 int main()
 {
